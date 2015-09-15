@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Login</string>
+    <string name="action_settings">Configurações</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="btnLogin">Logar</string>
+</resources>
