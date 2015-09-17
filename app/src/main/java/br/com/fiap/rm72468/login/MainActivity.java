@@ -1,13 +1,17 @@
 package br.com.fiap.rm72468.login;
 
 import android.app.Activity;
-import android.app.DialogFragment;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -22,13 +26,38 @@ public class MainActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TextView txtUsuario = (TextView) findViewById(R.id.txtUsuario);
-                    TextView txtSenha   = (TextView) findViewById(R.id.txtSenha);
+                    final EditText txtUsuario = (EditText) findViewById(R.id.txtUsuario);
+                    final EditText txtSenha   = (EditText) findViewById(R.id.txtSenha);
+                    String usuario = txtUsuario.getText().toString();
+                    String senha = txtSenha.getText().toString();
+                    Log.w(R.string.app_name+"."+this.getClass().getName(), "Usuário fazendo login:"+ usuario);
+                    if(senha.equals("fiap") && usuario.equals("fiap")) {
+                        imprimir("Login efetuado com sucesso!");
+                    }else{
+                        imprimir("Usuário ou senha errada!");
+                    }
 
+                    /*
+                    Dialog dialog = new AlertDialog.Builder(getApplicationContext())
+                            .setMessage(txtUsuario.getText() + ":"+txtSenha.getText())
+                            .setNeutralButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    txtUsuario.setText("");
+                                    txtSenha.setText("");
+                                }
+                            })
+                            .create();
+                    dialog.show();*/
                 }
             });
     }
 
+
+    protected void imprimir(String msg){
+        Log.w(R.string.app_name+"."+this.getClass().getName(), "MSG: "+msg);
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
